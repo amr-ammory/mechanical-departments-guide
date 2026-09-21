@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل أقسام الهندسة الميكانيكية</title>
+  <meta name="description" content="دليل عربي تفاعلي يعرّف بأقسام كلية الهندسة الميكانيكية، ويساعد الطالب على مقارنة التخصصات وفهم الدراسة والمهارات وفرص العمل في سوريا." />
+  <meta name="theme-color" content="#1c2410" />
+  <meta property="og:title" content="دليل أقسام الهندسة الميكانيكية" />
+  <meta property="og:description" content="اكتشف الأقسام الثمانية للهندسة الميكانيكية، الدراسة، المهارات، وفرص العمل في سوريا ضمن تجربة عربية تفاعلية." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ar_AR" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --olive-950: #161d0d;
+      --olive-900: #1c2410;
+      --olive-850: #263017;
+      --olive-800: #31401d;
+      --olive-700: #4f6331;
+      --olive-600: #6d8248;
+      --olive-500: #87a35a;
+      --cream-50: #fffef9;
+      --cream-100: #f7f4e8;
+      --cream-200: #e8e2ca;
+      --line: rgba(143, 214, 148, 0.12);
+      --glow: #8fd694;
+      --glow-soft: rgba(143, 214, 148, 0.18);
+      --shadow-lg: 0 20px 60px rgba(18, 24, 10, 0.28);
+      --shadow-md: 0 12px 30px rgba(18, 24, 10, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --container: min(1180px, calc(100vw - 32px));
+      --transition: 320ms cubic-bezier(.22,.61,.36,1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Tajawal', system-ui, sans-serif;
+      background: var(--cream-50);
+      color: var(--olive-900);
+      line-height: 1.85;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(143,214,148,0.12), transparent 28%),
+        radial-gradient(circle at 80% 15%, rgba(143,214,148,0.08), transparent 26%),
+        linear-gradient(180deg, #11170a 0%, #1c2410 42%, #263017 100%);
+    }
+    .bg::before,
+    .bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .bg::before {
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: .55;
+    }
+    .bg::after {
+      background:
+        radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(143,214,148,0.18), transparent 22%),
+        radial-gradient(circle at calc(var(--mx, 50%) + 8%) calc(var(--my, 30%) + 6%), rgba(143,214,148,0.08), transparent 30%);
+      transition: background 140ms linear;
+    }
+
+    .shell { position: relative; z-index: 1; }
+
+    .topbar {
+      width: var(--container);
+      margin: 0 auto;
+      padding: 18px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--cream-100);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: .98rem;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px);
+    }
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--glow);
+      box-shadow: 0 0 18px rgba(143,214,148,0.7);
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      place-items: center;
+      padding: 28px 16px 64px;
+      color: var(--cream-100);
+    }
+    .hero-inner {
+      width: var(--container);
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .hero-copy,
+    .hero-panel {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: rise .85s forwards;
+    }
+    .hero-panel { animation-delay: .12s; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(143,214,148,0.18);
+      background: rgba(255,255,255,0.05);
+      color: var(--glow);
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 1.2;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+    .hero h1 span {
+      color: var(--glow);
+      text-shadow: 0 0 24px rgba(143,214,148,.18);
+    }
+    .hero p {
+      margin: 0 0 28px;
+      max-width: 700px;
+      color: var(--cream-200);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 22px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--glow), #b8ebb9);
+      color: var(--olive-900);
+      box-shadow: 0 12px 24px rgba(143,214,148,.18);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--cream-100);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-panel h2 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+      color: var(--cream-50);
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--glow);
+      margin-bottom: 4px;
+    }
+    .stat span {
+      color: var(--cream-200);
+      font-size: .95rem;
+    }
+
+    .scroll-note {
+      text-align: center;
+      color: rgba(255,255,255,.7);
+      font-size: .9rem;
+      margin-top: 28px;
+      animation: floatY 2.2s infinite;
+    }
+
+    .main {
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 18px, var(--cream-50) 18px);
+      padding: 56px 0 72px;
+    }
+    .section {
+      width: var(--container);
+      margin: 0 auto;
+    }
+    .section-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 34px;
+    }
+    .section-head .tag {
+      display: inline-block;
+      font-size: .9rem;
+      font-weight: 800;
+      color: var(--olive-600);
+      margin-bottom: 12px;
+    }
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .section-head p {
+      margin: 0;
+      font-size: 1.03rem;
+      color: var(--olive-700);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, var(--cream-50), #f7f3e7);
+      border: 1px solid rgba(49,64,29,.12);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px 18px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      cursor: pointer;
+      transform: translateY(28px);
+      opacity: 0;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(135,163,90,.45);
+      box-shadow: 0 20px 40px rgba(22,29,13,.18);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(143,214,148,.12));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .card:hover::before { opacity: 1; }
+    .card > * { position: relative; z-index: 1; }
+    .icon {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(143,214,148,.15);
+      color: var(--olive-900);
+      font-size: 1.9rem;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 0 1px rgba(143,214,148,.18);
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+    .card p {
+      margin: 0 0 14px;
+      color: var(--olive-700);
+      font-size: .95rem;
+      min-height: 86px;
+    }
+    .card .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: .9rem;
+      color: var(--olive-600);
+      font-weight: 800;
+    }
+
+    .compare-strip {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-radius: var(--radius-lg);
+      background: #f5f2e5;
+      border: 1px solid rgba(49,64,29,.1);
+      color: var(--olive-700);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      justify-content: center;
+      text-align: center;
+    }
+    .compare-strip span { font-weight: 700; }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(17,23,10,.64);
+      backdrop-filter: blur(8px);
+      z-index: 30;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal {
+      width: min(860px, 100%);
+      max-height: min(88vh, 920px);
+      overflow: auto;
+      background: linear-gradient(180deg, #fffef9, #f8f4e9);
+      border-radius: 28px;
+      box-shadow: 0 30px 70px rgba(0,0,0,.28);
+      border: 1px solid rgba(49,64,29,.12);
+      transform: translateY(24px) scale(.98);
+      opacity: 0;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .overlay.active .modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .modal-header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,254,249,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(49,64,29,.08);
+      z-index: 1;
+    }
+    .modal-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .modal-title .icon {
+      margin: 0;
+      width: 48px;
+      height: 48px;
+      font-size: 1.6rem;
+    }
+    .modal-title h3 {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.3;
+      font-weight: 900;
+      color: var(--olive-900);
+    }
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--olive-900);
+      color: white;
+      cursor: pointer;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .close-btn:hover {
+      transform: rotate(90deg);
+      background: var(--olive-700);
+    }
+    .modal-body {
+      padding: 22px 20px 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .detail {
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(49,64,29,.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .detail.full { grid-column: 1 / -1; }
+    .detail .label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--olive-600);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+    .detail p {
+      margin: 0;
+      color: var(--olive-900);
+      font-size: .98rem;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 20px 22px;
+    }
+    .nav-btn {
+      border: 0;
+      background: var(--olive-900);
+      color: var(--cream-50);
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-btn:hover {
+      background: var(--olive-700);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: var(--olive-900);
+      color: var(--cream-200);
+      text-align: center;
+      padding: 24px 16px 28px;
+      font-size: .92rem;
+    }
+    footer strong { color: var(--glow); }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .topbar { justify-content: center; }
+      .hero { padding-top: 12px; }
+      .hero-panel { padding: 18px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .modal-body { grid-template-columns: 1fr; }
+      .modal-footer { flex-direction: column; }
+      .nav-btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .bg::after { display: none; }
+      .card, .hero-copy, .hero-panel { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-dot"></span> دليل أقسام الهندسة الميكانيكية</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">⚙️ هوية عربية هندسية واضحة</div>
+          <h1>اختر مسارك داخل <span>الهندسة الميكانيكية</span></h1>
+          <p>موقع عربي احترافي يساعد الطالب على فهم الأقسام الثمانية، مقارنة مجالات الدراسة، اكتشاف المهارات المناسبة، واستيعاب فرص العمل المستقبلية في سوريا ضمن تجربة بصرية حديثة وسهلة التصفح.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.getElementById('departments').scrollIntoView({behavior:'smooth'})">ابدأ استعراض الأقسام</button>
+            <a class="btn btn-secondary" href="#departments">انتقل إلى الدليل</a>
+          </div>
+          <div class="scroll-note">مرر للأسفل لمشاهدة الدليل التفاعلي</div>
+        </div>
+
+        <aside class="hero-panel" aria-label="ملخص سريع">
+          <h2>نظرة سريعة</h2>
+          <p style="margin:0;color:var(--cream-200);">واجهة واضحة، تفاصيل مختصرة، ومقارنة بصرية سريعة لكل تخصص دون مغادرة الصفحة.</p>
+          <div class="hero-stats">
+            <div class="stat"><strong>8</strong><span>أقسام معروضة</span></div>
+            <div class="stat"><strong>RTL</strong><span>تصميم عربي كامل</span></div>
+            <div class="stat"><strong>SEO</strong><span>تهيئة للمشاركة</span></div>
+            <div class="stat"><strong>Responsive</strong><span>متوافق مع الهاتف</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <main class="main">
+      <section class="section" id="departments">
+        <div class="section-head">
+          <span class="tag">دليل الأقسام</span>
+          <h2>الأقسام الثمانية في تجربة تفاعلية سهلة التصفح</h2>
+          <p>اضغط على أي بطاقة لفتح نافذة تفصيلية تشمل التعريف، ما يدرسه الطالب، المزايا، مجالات العمل، المهارات المناسبة، والمستقبل المهني في سوريا.</p>
+        </div>
+
+        <div class="grid" id="grid"></div>
+
+        <div class="compare-strip">
+          <span>مقارنة سريعة:</span>
+          <span>تصميم وتحليل</span>
+          <span>تصنيع وإنتاج</span>
+          <span>طاقة ومحركات</span>
+          <span>تحكم وروبوتات</span>
+          <span>تطبيقات خدمية وصناعية</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      تم تصميم هذا الدليل بصياغة عربية احترافية لخدمة طلاب <strong>الهندسة الميكانيكية</strong> في سوريا.
+    </footer>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="close-btn" id="closeBtn" aria-label="إغلاق">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="nav-btn" id="nextBtn">التالي ←</button>
+        <button class="nav-btn" id="prevBtn">→ السابق</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const departments = [
+  {
+    "id": "production",
+    "name": "الإنتاج والتصنيع",
+    "icon": "⚙️",
+    "def": "قسم يركز على عمليات التصنيع وتحويل المواد الخام إلى منتجات نهائية بكفاءة وجودة عالية.",
+    "study": "يدرس الطالب عمليات التشغيل بالقطع، CNC، القياس والتفتيش، تخطيط خطوط الإنتاج، وإدارة الجودة.",
+    "advantages": "قسم عملي جداً يرتبط مباشرة بالمصانع وخطوط الإنتاج الحقيقية، ويطور مهارات حل المشكلات التقنية اليومية.",
+    "fields": "المصانع، ورش التصنيع، مراقبة الجودة، التخطيط الصناعي، والاستشارات الفنية.",
+    "skills": "دقة القياس، التفكير التحليلي، إدارة الوقت، والتعامل مع المعدات الدقيقة.",
+    "future": "طلب مستمر في القطاع الصناعي السوري رغم التحديات، مع فرص في التصنيع المحلي وإعادة التأهيل الصناعي."
+  },
+  {
+    "id": "power",
+    "name": "القوى الميكانيكية والطاقة",
+    "icon": "🔥",
+    "def": "قسم يهتم بأنظمة توليد الطاقة الحرارية وتحويلها، كالمحركات والتوربينات والمراجل.",
+    "study": "الديناميك الحراري، انتقال الحرارة، محركات الاحتراق الداخلي، ومحطات القوى البخارية والغازية.",
+    "advantages": "أساس نظري قوي يفتح الباب لمجالات الطاقة المتنوعة، ويصلح لمن يحب الفيزياء التطبيقية.",
+    "fields": "محطات الكهرباء، الصناعات النفطية، أنظمة التدفئة الصناعية، والاستشارات الهندسية.",
+    "skills": "التحليل الرياضي، الفهم العميق للدورات الحرارية، والقدرة على النمذجة.",
+    "future": "فرص متزايدة مع التوجه لإعادة تأهيل محطات الطاقة والبنية التحتية الكهربائية في سوريا."
+  },
+  {
+    "id": "design",
+    "name": "التصميم والإنشاءات المعدنية",
+    "icon": "📐",
+    "def": "قسم يعلم أسس تصميم القطع والمنشآت الميكانيكية وتحليل تحمّلها للأحمال.",
+    "study": "مقاومة المواد، تصميم العناصر الآلية، الرسم الهندسي المتقدم، وبرامج CAD/CAE.",
+    "advantages": "يبني مهارة تصميمية إبداعية مع أساس تحليلي دقيق، مناسب لعشاق SolidWorks والنمذجة.",
+    "fields": "مكاتب التصميم الهندسي، شركات المقاولات، وتصميم المعدات والهياكل الصناعية.",
+    "skills": "التصور المكاني، إتقان برامج التصميم، والدقة في الحسابات الإنشائية.",
+    "future": "طلب جيد في مكاتب التصميم ومشاريع البنية التحتية وإعادة البناء في سوريا."
+  },
+  {
+    "id": "mechatronics",
+    "name": "الميكاترونكس والتحكم",
+    "icon": "🤖",
+    "def": "قسم يدمج الميكانيك مع الإلكترونيات والبرمجة لتصميم أنظمة ذكية وروبوتية.",
+    "study": "الحساسات والمشغلات، الدارات الكهربائية، البرمجة، وأنظمة التحكم الآلي.",
+    "advantages": "قسم متعدد التخصصات يفتح آفاقاً واسعة في الروبوتات والأتمتة الصناعية.",
+    "fields": "الأتمتة الصناعية، الروبوتات، الأجهزة الذكية، وأنظمة المساعدة الحركية.",
+    "skills": "البرمجة الأساسية، فهم الدارات، والتفكير المنطقي في حل المشكلات.",
+    "future": "من أسرع الأقسام نمواً عالمياً ومحلياً مع تزايد الطلب على الأتمتة والحلول الذكية."
+  },
+  {
+    "id": "automotive",
+    "name": "هندسة السيارات والمركبات",
+    "icon": "🚗",
+    "def": "قسم متخصص بدراسة تصميم وتشغيل وصيانة المركبات ووسائل النقل البرية.",
+    "study": "أنظمة نقل الحركة، الديناميكا الحرارية للمحركات، الفرامل والتعليق، والمركبات الحديثة.",
+    "advantages": "مجال عملي محبوب لعشاق السيارات، مع فرص تخصص في المركبات الكهربائية مستقبلاً.",
+    "fields": "شركات صيانة المركبات، الوكالات، والتصنيع والتجميع المحلي.",
+    "skills": "الفهم الميكانيكي التطبيقي، التشخيص الفني، ومهارات الصيانة العملية.",
+    "future": "سوق نشط في سوريا نظراً للاعتماد الكبير على المركبات وحاجتها للصيانة والتأهيل."
+  },
+  {
+    "id": "renewable",
+    "name": "الطاقة المتجددة والمستدامة",
+    "icon": "☀️",
+    "def": "قسم يركز على تقنيات الطاقة الشمسية والريحية والحلول المستدامة للطاقة.",
+    "study": "الخلايا الشمسية، التوربينات الريحية، تخزين الطاقة، وكفاءة استخدام الطاقة.",
+    "advantages": "قسم مستقبلي يستجيب لأزمة الطاقة العالمية والمحلية، مع طلب متزايد على الخبرات.",
+    "fields": "شركات الطاقة الشمسية، مشاريع الطاقة الريفية، والاستشارات البيئية.",
+    "skills": "التفكير الابتكاري، فهم أساسيات الكهرباء، والقدرة على التصميم الاقتصادي للأنظمة.",
+    "future": "من أهم القطاعات نمواً في سوريا بسبب أزمة الكهرباء والحاجة لحلول طاقة مستقلة."
+  },
+  {
+    "id": "hvac",
+    "name": "التبريد والتكييف",
+    "icon": "❄️",
+    "def": "قسم يهتم بأنظمة التحكم بدرجات الحرارة والرطوبة للمباني والصناعات.",
+    "study": "دورات التبريد، تصميم أنظمة التكييف المركزي، والتهوية الصناعية.",
+    "advantages": "تخصص عملي بطلب سوقي ثابت، مرتبط مباشرة بالمباني والمنشآت الصناعية.",
+    "fields": "شركات التكييف المركزي، الصيانة الفنية، والمقاولات الهندسية.",
+    "skills": "القراءة الفنية للمخططات، حسابات الأحمال الحرارية، والمهارة العملية بالتركيب.",
+    "future": "طلب مستقر ومستمر في سوريا بسبب الاعتماد الدائم على أنظمة التبريد والتكييف."
+  },
+  {
+    "id": "transport",
+    "name": "النقل الميكانيكي والرافعات",
+    "icon": "🏗️",
+    "def": "قسم يدرس تصميم وتشغيل معدات الرفع والنقل الثقيل في المصانع والموانئ.",
+    "study": "الرافعات والونشات، الناقلات الحزامية، والسلامة الهندسية في التشغيل.",
+    "advantages": "تخصص متخصص بطلب محدد لكنه أساسي في القطاعين الصناعي واللوجستي.",
+    "fields": "الموانئ، المصانع الثقيلة، وشركات النقل واللوجستيات.",
+    "skills": "فهم الأحمال الميكانيكية، السلامة المهنية، والدقة التشغيلية.",
+    "future": "فرص محدودة لكنها ثابتة مرتبطة بإعادة تأهيل الموانئ والمنشآت الصناعية الكبرى."
+  }
+];
+    const grid = document.getElementById('grid');
+    const overlay = document.getElementById('overlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    function buildCards() {
+      departments.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `عرض تفاصيل ${item.name}`);
+        card.innerHTML = `
+          <div class="icon">${item.icon}</div>
+          <h3>${item.name}</h3>
+          <p>${item.def}</p>
+          <div class="meta">
+            <span>عرض التفاصيل</span>
+            <span>←</span>
+          </div>
+        `;
+        card.addEventListener('click', () => openModal(index));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(index);
+          }
+        });
+        grid.appendChild(card);
+      });
+    }
+
+    function renderModal(index) {
+      const item = departments[index];
+      modalTitle.innerHTML = `
+        <div class="icon">${item.icon}</div>
+        <div>
+          <h3 id="modalHeading">${item.name}</h3>
+        </div>
+      `;
+      modalBody.innerHTML = `
+        <div class="detail full"><span class="label">📘 التعريف</span><p>${item.def}</p></div>
+        <div class="detail"><span class="label">📚 ما يدرسه الطالب</span><p>${item.study}</p></div>
+        <div class="detail"><span class="label">⭐ المزايا والأهمية</span><p>${item.advantages}</p></div>
+        <div class="detail"><span class="label">🏭 مجالات العمل</span><p>${item.fields}</p></div>
+        <div class="detail"><span class="label">🛠️ المهارات المناسبة</span><p>${item.skills}</p></div>
+        <div class="detail full"><span class="label">🚀 المستقبل وفرص العمل في سوريا</span><p>${item.future}</p></div>
+      `;
+      prevBtn.onclick = () => openModal((index - 1 + departments.length) % departments.length);
+      nextBtn.onclick = () => openModal((index + 1) % departments.length);
+    }
+
+    function openModal(index) {
+      currentIndex = index;
+      renderModal(index);
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+      if (!overlay.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') openModal((currentIndex + 1) % departments.length);
+      if (e.key === 'ArrowRight') openModal((currentIndex - 1 + departments.length) % departments.length);
+    });
+
+    const cardsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${idx * 40}ms`;
+          entry.target.classList.add('visible');
+          cardsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    buildCards();
+    document.querySelectorAll('.card').forEach(card => cardsObserver.observe(card));
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      window.addEventListener('pointermove', (e) => {
+        const x = `${(e.clientX / window.innerWidth) * 100}%`;
+        const y = `${(e.clientY / window.innerHeight) * 100}%`;
+        document.documentElement.style.setProperty('--mx', x);
+        document.documentElement.style.setProperty('--my', y);
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
