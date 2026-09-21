@@ -446,29 +446,49 @@
 </div>
 
 <script>
-/* ── Illustrator-style expressive SVG icons ── */
 const ICONS = {
 
-  /* هندسة الإنتاج: ترس CNC مع أداة قطع */
+  /* هندسة الإنتاج: شاشة CAD/CAM مع تروس ومؤشر تصميم */
   production: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="20" cy="20" r="7"/>
-    <circle cx="20" cy="20" r="2.5"/>
-    <path d="M20 5v4M20 31v4M5 20h4M31 20h4M8.5 8.5l2.8 2.8M28.7 28.7l2.8 2.8M31.5 8.5l-2.8 2.8M11.3 28.7l-2.8 2.8"/>
-    <path d="M34 30 L38 26 L44 32 L40 36 Z" stroke-linejoin="round"/>
-    <line x1="34" y1="30" x2="30" y2="34"/>
-    <line x1="32" y1="38" x2="36" y2="42"/>
+    <!-- شاشة الكمبيوتر -->
+    <rect x="4" y="6" width="32" height="22" rx="2"/>
+    <!-- عمود الشاشة -->
+    <line x1="20" y1="28" x2="20" y2="34"/>
+    <line x1="14" y1="34" x2="26" y2="34"/>
+    <!-- رسم CAD على الشاشة: مستطيل بخطوط قطر -->
+    <rect x="8" y="10" width="14" height="10" rx="1"/>
+    <line x1="8" y1="10" x2="22" y2="20"/>
+    <line x1="22" y1="10" x2="8" y2="20"/>
+    <!-- مؤشر/قلم التصميم -->
+    <line x1="25" y1="10" x2="34" y2="10"/>
+    <line x1="25" y1="14" x2="31" y2="14"/>
+    <line x1="25" y1="18" x2="28" y2="18"/>
+    <!-- ترس صغير بجانب الشاشة -->
+    <circle cx="39" cy="34" r="5"/>
+    <circle cx="39" cy="34" r="2"/>
+    <line x1="39" y1="29" x2="39" y2="27"/>
+    <line x1="39" y1="39" x2="39" y2="41"/>
+    <line x1="34" y1="34" x2="32" y2="34"/>
+    <line x1="44" y1="34" x2="46" y2="34"/>
+    <line x1="35.5" y1="30.5" x2="34.1" y2="29.1"/>
+    <line x1="42.5" y1="37.5" x2="43.9" y2="38.9"/>
+    <line x1="42.5" y1="30.5" x2="43.9" y2="29.1"/>
+    <line x1="35.5" y1="37.5" x2="34.1" y2="38.9"/>
+    <!-- أداة CNC صغيرة أسفل يمين -->
+    <path d="M6 38 L10 38 L10 44 L8 44 L8 40 L6 40 Z"/>
+    <line x1="8" y1="38" x2="8" y2="36"/>
+    <line x1="6" y1="44" x2="12" y2="44"/>
   </svg>`,
 
-  /* هندسة الطيران: طائرة بأجنحة وذيل واضحين */
+  /* هندسة الطيران: طائرة بجناحين وذيل وهيكل محدد */
   aviation: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8 26 C8 26 16 22 24 22 C32 22 40 26 40 26"/>
     <path d="M24 10 L24 38"/>
     <path d="M24 22 L10 30 L10 34 L24 28 L38 34 L38 30 Z"/>
     <path d="M24 34 L18 40 L18 42 L24 39 L30 42 L30 40 Z"/>
     <ellipse cx="24" cy="18" rx="3" ry="8"/>
   </svg>`,
 
-  /* هندسة النووية: مفاعل مع نواة ومدارات */
+  /* هندسة النووية: مفاعل مع مدارات ونواة وقضبان وقود */
   nuclear: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="24" cy="24" r="4"/>
     <ellipse cx="24" cy="24" rx="14" ry="6" transform="rotate(0 24 24)"/>
@@ -483,7 +503,7 @@ const ICONS = {
     <line x1="26" y1="34" x2="26" y2="44"/>
   </svg>`,
 
-  /* الغزل والنسيج: بكرة خيط مع إبرة وخيوط متشابكة */
+  /* الغزل والنسيج: بكرة خيط مع إبرة وخيط متشابك */
   textile: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <ellipse cx="16" cy="24" rx="6" ry="14"/>
     <ellipse cx="16" cy="24" rx="3" ry="14"/>
@@ -495,7 +515,7 @@ const ICONS = {
     <path d="M34 40 L30 44 L34 43 L38 44 Z"/>
   </svg>`,
 
-  /* هندسة الطاقة: توربين بخاري مع ألسنة ومحور */
+  /* هندسة الطاقة: توربين دوار مع ألسنة ومحور وقاعدة */
   energy: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="24" cy="28" r="8"/>
     <circle cx="24" cy="28" r="3"/>
@@ -528,7 +548,7 @@ const ICONS = {
     <line x1="24" y1="22" x2="24" y2="11"/>
   </svg>`,
 
-  /* الهندسة الصناعية: مخطط تدفق عمليات مع مراحل */
+  /* الهندسة الصناعية: مخطط تدفق عمليات بمستطيلات وأسهم */
   industrial: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="4" y="8" width="10" height="8" rx="2"/>
     <rect x="19" y="8" width="10" height="8" rx="2"/>
@@ -544,7 +564,7 @@ const ICONS = {
     <rect x="19" y="38" width="10" height="6" rx="2"/>
   </svg>`,
 
-  /* الآلات الزراعية: جرار واضح بعجلتين كبيرتين وعجلة صغيرة */
+  /* الآلات الزراعية: جرار بعجلتين وهيكل مقصورة */
   agricultural: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="34" cy="36" r="8"/>
     <circle cx="34" cy="36" r="4"/>
