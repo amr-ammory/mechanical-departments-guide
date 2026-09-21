@@ -198,31 +198,44 @@
       box-shadow: var(--shadow-lg);
     }
     .hero-panel h2 {
-      margin: 0 0 14px;
+      margin: 0 0 6px;
       font-size: 1.2rem;
       color: var(--cream-50);
+    }
+    .hero-panel > p {
+      margin: 0 0 16px;
+      color: var(--cream-200);
+      font-size: .95rem;
     }
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      margin-top: 16px;
     }
     .stat {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
-      padding: 16px;
+      padding: 16px 14px;
     }
     .stat strong {
       display: block;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--glow);
       margin-bottom: 4px;
+      line-height: 1.2;
     }
     .stat span {
       color: var(--cream-200);
-      font-size: .95rem;
+      font-size: .88rem;
+      line-height: 1.4;
+      display: block;
+    }
+    .stat .sub {
+      color: rgba(143,214,148,0.6);
+      font-size: .78rem;
+      margin-top: 3px;
+      display: block;
     }
 
     .scroll-note {
@@ -539,14 +552,30 @@
           <div class="scroll-note">مرر للأسفل لمشاهدة الدليل التفاعلي</div>
         </div>
 
-        <aside class="hero-panel" aria-label="ملخص سريع">
+        <aside class="hero-panel" aria-label="نظرة سريعة على الهندسة الميكانيكية">
           <h2>نظرة سريعة</h2>
-          <p style="margin:0;color:var(--cream-200);">واجهة واضحة، تفاصيل مختصرة، ومقارنة بصرية سريعة لكل تخصص دون مغادرة الصفحة.</p>
+          <p>أبرز ما يميّز الهندسة الميكانيكية كتخصص جامعي متكامل.</p>
           <div class="hero-stats">
-            <div class="stat"><strong>8</strong><span>أقسام معروضة</span></div>
-            <div class="stat"><strong>RTL</strong><span>تصميم عربي كامل</span></div>
-            <div class="stat"><strong>SEO</strong><span>تهيئة للمشاركة</span></div>
-            <div class="stat"><strong>Responsive</strong><span>متوافق مع الهاتف</span></div>
+            <div class="stat">
+              <strong>8 ⚙️</strong>
+              <span>تخصصات متنوعة</span>
+              <em class="sub">من التصميم إلى الروبوتات</em>
+            </div>
+            <div class="stat">
+              <strong>5 📅</strong>
+              <span>سنوات دراسة</span>
+              <em class="sub">نظري وعملي ومشاريع</em>
+            </div>
+            <div class="stat">
+              <strong>+30 🔬</strong>
+              <span>مادة هندسية</span>
+              <em class="sub">ميكانيك، حرارة، تصميم</em>
+            </div>
+            <div class="stat">
+              <strong>∞ 🚀</strong>
+              <span>مجالات عمل</span>
+              <em class="sub">صناعة، طاقة، روبوت، سيارات</em>
+            </div>
           </div>
         </aside>
       </div>
