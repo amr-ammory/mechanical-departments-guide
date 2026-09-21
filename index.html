@@ -224,6 +224,58 @@
     .card .meta { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:.9rem; color:var(--olive-600); font-weight:800; }
     .meta span:last-child { display:inline-block; animation:arrowShift 1.6s ease-in-out infinite; }
 
+    /* ===== بانر الفيديو ===== */
+    .video-banner {
+      grid-column: 1 / -1;
+      display: block;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 8px 28px rgba(0,0,0,.22);
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .video-banner:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.32); }
+    .video-banner img {
+      width: 100%; display: block;
+      aspect-ratio: 16/9; object-fit: cover;
+      transition: opacity var(--transition);
+    }
+    .video-banner:hover img { opacity: .88; }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px;
+      background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.18) 60%, transparent 100%);
+    }
+    .play-circle {
+      width: 62px; height: 62px; border-radius: 50%;
+      background: rgba(255,0,0,.9);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(255,0,0,.5);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .video-banner:hover .play-circle {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(255,0,0,.7);
+    }
+    .play-circle svg { width:28px; height:28px; fill:#fff; margin-right:-3px; }
+    .video-label {
+      color: #fff; font-family: 'Tajawal', sans-serif;
+      font-size: .95rem; font-weight: 700;
+      text-align: center; padding: 0 12px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.8);
+    }
+    .video-yt-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(0,0,0,.72); border-radius: 6px;
+      padding: 4px 10px; color: #fff; font-size: .78rem; font-weight: 700;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .video-yt-badge svg { width:16px; height:16px; fill:#ff0000; }
+
     .compare-strip {
       margin-top:22px; padding:18px 20px; border-radius:var(--radius-lg);
       background:#f5f2e5; border:1px solid rgba(49,64,29,.1);
@@ -415,7 +467,7 @@
       <div class="section-head">
         <span class="tag">دليل الأقسام</span>
         <h2>الأقسام الثمانية في تجربة تفاعلية سهلة التصفح</h2>
-        <p>اضغط على أي بطاقة لفتح نافذة تفصيلية تشمل التعريف، ما يدرسه الطالب، المزايا، مجالات العمل، المهارات المناسبة، والمستقبل المهني في سوريا.</p>
+        <p>اضغط على أي بطاقة لفتح نافذة تفصيلية تشمل التعريف، ما يدرسه الطالب، المزايا، مجالات العمل، المهارات المناسبة، والمستقبل المهني في سوريا — مع فيديو واقعي من مجال العمل.</p>
       </div>
       <div class="grid" id="grid"></div>
       <div class="compare-strip">
@@ -447,48 +499,29 @@
 
 <script>
 const ICONS = {
-
-  /* هندسة الإنتاج: شاشة CAD/CAM مع تروس ومؤشر تصميم */
   production: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <!-- شاشة الكمبيوتر -->
     <rect x="4" y="6" width="32" height="22" rx="2"/>
-    <!-- عمود الشاشة -->
     <line x1="20" y1="28" x2="20" y2="34"/>
     <line x1="14" y1="34" x2="26" y2="34"/>
-    <!-- رسم CAD على الشاشة: مستطيل بخطوط قطر -->
     <rect x="8" y="10" width="14" height="10" rx="1"/>
     <line x1="8" y1="10" x2="22" y2="20"/>
     <line x1="22" y1="10" x2="8" y2="20"/>
-    <!-- مؤشر/قلم التصميم -->
     <line x1="25" y1="10" x2="34" y2="10"/>
     <line x1="25" y1="14" x2="31" y2="14"/>
     <line x1="25" y1="18" x2="28" y2="18"/>
-    <!-- ترس صغير بجانب الشاشة -->
     <circle cx="39" cy="34" r="5"/>
     <circle cx="39" cy="34" r="2"/>
     <line x1="39" y1="29" x2="39" y2="27"/>
     <line x1="39" y1="39" x2="39" y2="41"/>
     <line x1="34" y1="34" x2="32" y2="34"/>
     <line x1="44" y1="34" x2="46" y2="34"/>
-    <line x1="35.5" y1="30.5" x2="34.1" y2="29.1"/>
-    <line x1="42.5" y1="37.5" x2="43.9" y2="38.9"/>
-    <line x1="42.5" y1="30.5" x2="43.9" y2="29.1"/>
-    <line x1="35.5" y1="37.5" x2="34.1" y2="38.9"/>
-    <!-- أداة CNC صغيرة أسفل يمين -->
-    <path d="M6 38 L10 38 L10 44 L8 44 L8 40 L6 40 Z"/>
-    <line x1="8" y1="38" x2="8" y2="36"/>
-    <line x1="6" y1="44" x2="12" y2="44"/>
   </svg>`,
-
-  /* هندسة الطيران: طائرة بجناحين وذيل وهيكل محدد */
   aviation: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M24 10 L24 38"/>
     <path d="M24 22 L10 30 L10 34 L24 28 L38 34 L38 30 Z"/>
     <path d="M24 34 L18 40 L18 42 L24 39 L30 42 L30 40 Z"/>
     <ellipse cx="24" cy="18" rx="3" ry="8"/>
   </svg>`,
-
-  /* هندسة النووية: مفاعل مع مدارات ونواة وقضبان وقود */
   nuclear: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="24" cy="24" r="4"/>
     <ellipse cx="24" cy="24" rx="14" ry="6" transform="rotate(0 24 24)"/>
@@ -502,8 +535,6 @@ const ICONS = {
     <line x1="24" y1="34" x2="24" y2="44"/>
     <line x1="26" y1="34" x2="26" y2="44"/>
   </svg>`,
-
-  /* الغزل والنسيج: بكرة خيط مع إبرة وخيط متشابك */
   textile: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <ellipse cx="16" cy="24" rx="6" ry="14"/>
     <ellipse cx="16" cy="24" rx="3" ry="14"/>
@@ -514,8 +545,6 @@ const ICONS = {
     <line x1="34" y1="10" x2="34" y2="40"/>
     <path d="M34 40 L30 44 L34 43 L38 44 Z"/>
   </svg>`,
-
-  /* هندسة الطاقة: توربين دوار مع ألسنة ومحور وقاعدة */
   energy: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="24" cy="28" r="8"/>
     <circle cx="24" cy="28" r="3"/>
@@ -528,8 +557,6 @@ const ICONS = {
     <line x1="24" y1="36" x2="24" y2="44"/>
     <line x1="20" y1="44" x2="28" y2="44"/>
   </svg>`,
-
-  /* المواد الهندسية: بنية بلورية ذرية مع روابط */
   materials: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="24" cy="8" r="3"/>
     <circle cx="10" cy="28" r="3"/>
@@ -547,8 +574,6 @@ const ICONS = {
     <line x1="24" y1="22" x2="35" y2="28"/>
     <line x1="24" y1="22" x2="24" y2="11"/>
   </svg>`,
-
-  /* الهندسة الصناعية: مخطط تدفق عمليات بمستطيلات وأسهم */
   industrial: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="4" y="8" width="10" height="8" rx="2"/>
     <rect x="19" y="8" width="10" height="8" rx="2"/>
@@ -563,8 +588,6 @@ const ICONS = {
     <path d="M10 38 L10 42 L38 42 L38 38"/>
     <rect x="19" y="38" width="10" height="6" rx="2"/>
   </svg>`,
-
-  /* الآلات الزراعية: جرار بعجلتين وهيكل مقصورة */
   agricultural: `<svg viewBox="0 0 48 48" fill="none" stroke="#4f6331" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="34" cy="36" r="8"/>
     <circle cx="34" cy="36" r="4"/>
@@ -586,57 +609,83 @@ const departments = [
     advantages:'قسم عملي جداً يرتبط مباشرة بالمصانع وخطوط الإنتاج الحقيقية، ويطوّر مهارات حل المشكلات التقنية اليومية.',
     fields:'المصانع والورش الصناعية، مراقبة الجودة، التخطيط الصناعي، الاستشارات الفنية، وإعادة تأهيل المنشآت الإنتاجية.',
     skills:'دقة القياس، التفكير التحليلي، إدارة الوقت، إتقان برامج CAM، والتعامل مع المعدات الدقيقة.',
-    future:'طلب مستمر في القطاع الصناعي السوري مع فرص واعدة في إعادة التأهيل الصناعي وبناء خطوط إنتاج محلية.' },
+    future:'طلب مستمر في القطاع الصناعي السوري مع فرص واعدة في إعادة التأهيل الصناعي وبناء خطوط إنتاج محلية.',
+    video: { id:'Jz3khwhC7_E', title:'جولة داخل ورشة CNC وخطوط الإنتاج الحقيقية' } },
   { id:'aviation', name:'هندسة الطيران',
     def:'قسم يختص بدراسة تصميم وتحليل وتصنيع الطائرات والمركبات الجوية، ويشمل ديناميكا الهواء والأنظمة الهوائية.',
     study:'يدرس الطالب ديناميكا الهواء، قوى الرفع والسحب، هياكل الطائرات، المحركات النفاثة، أنظمة التحكم في الطيران، والملاحة الجوية.',
     advantages:'تخصص رفيع المستوى علمياً، يفتح آفاقاً واسعة في صناعات الدفاع والفضاء والطيران المدني، مع إمكانية العمل دولياً.',
     fields:'شركات الطيران، قطاع الدفاع والصناعات العسكرية، وكالات الفضاء، وصيانة الطائرات وأنظمتها.',
     skills:'الرياضيات التطبيقية المتقدمة، التحليل الهيكلي، نمذجة الديناميكا الهوائية، وإتقان برامج محاكاة الطيران.',
-    future:'فرص عمل متخصصة في القطاع العسكري والطيران المدني السوري، مع إمكانية التخصص للعمل في شركات طيران إقليمية ودولية.' },
+    future:'فرص عمل متخصصة في القطاع العسكري والطيران المدني السوري، مع إمكانية التخصص للعمل في شركات طيران إقليمية ودولية.',
+    video: { id:'wNpjpwxPgYQ', title:'جولة حقيقية داخل مصنع Airbus A321XLR في هامبورغ' } },
   { id:'nuclear', name:'هندسة النووية',
     def:'قسم يدرس التطبيقات السلمية للطاقة النووية وتقنيات المفاعلات، ويشمل الحماية من الإشعاع والاستخدامات الطبية والصناعية.',
     study:'يدرس الطالب فيزياء المفاعلات النووية، انتقال الإشعاع، الوقاية من الإشعاع، دورة الوقود النووي، والتطبيقات الطبية والصناعية.',
     advantages:'تخصص نادر وذو أهمية استراتيجية، يوفر خبرة علمية عالية المستوى في مجال متنامٍ عالمياً للطاقة المستدامة.',
     fields:'محطات الطاقة النووية، المستشفيات والمراكز الطبية، مراكز الأبحاث، الهيئات الدولية للطاقة الذرية.',
     skills:'التحليل العلمي الدقيق، فهم الفيزياء النووية، إدارة السلامة الإشعاعية، والقدرة على العمل في بيئات تقنية متخصصة.',
-    future:'فرص دولية واسعة في ظل التوجه العالمي نحو الطاقة النووية كبديل نظيف، مع إمكانية العمل في المنظمات الدولية.' },
+    future:'فرص دولية واسعة في ظل التوجه العالمي نحو الطاقة النووية كبديل نظيف، مع إمكانية العمل في المنظمات الدولية.',
+    video: { id:'jmZtbv0tPXo', title:'دخول حقيقي لمحطة نووية — غرفة التحكم والمفاعل' } },
   { id:'textile', name:'هندسة الغزل والنسيج',
     def:'قسم يُعنى بدراسة تقنيات تحويل الألياف الطبيعية والصناعية إلى أقمشة ومنسوجات، وتصميم وتشغيل آلات الغزل والنسيج.',
     study:'يدرس الطالب خواص الألياف والخيوط، تقنيات الغزل والنسيج والتريكو، مراقبة جودة المنسوجات، الصباغة والتجهيز، وهندسة الآلات النسيجية.',
     advantages:'تخصص يرتبط بصناعة تاريخية متجذرة في سوريا، يجمع بين الجانبين التقني والإبداعي في آنٍ واحد.',
     fields:'المصانع النسيجية، صناعة الملبوسات، مراقبة جودة المنسوجات، الاستشارات الصناعية، وتطوير المنتجات النسيجية.',
     skills:'فهم خواص المواد الليفية، إدارة آلات الإنتاج النسيجي، مراقبة الجودة، والتفكير الإبداعي في التصميم.',
-    future:'سوريا ذات تاريخ عريق في صناعة النسيج، والقطاع مرشح للنهوض مجدداً في مرحلة إعادة الإعمار والتصدير.' },
+    future:'سوريا ذات تاريخ عريق في صناعة النسيج، والقطاع مرشح للنهوض مجدداً في مرحلة إعادة الإعمار والتصدير.',
+    video: { id:'ZZQO9E9ZcSU', title:'من القطن الخام حتى القماش — داخل مصنع نسيج حقيقي' } },
   { id:'energy', name:'هندسة الطاقة',
     def:'قسم يهتم بأنظمة توليد الطاقة الحرارية والكهربائية وتحويلها، ويشمل المحركات والتوربينات ومصادر الطاقة التقليدية والمتجددة.',
     study:'الديناميك الحراري، انتقال الحرارة، محركات الاحتراق الداخلي، محطات القوى، أنظمة التوربينات، وترشيد استهلاك الطاقة.',
     advantages:'أساس نظري قوي يفتح الباب لمجالات الطاقة المتنوعة، ويُعدّ الطالب للعمل في قطاع البنية التحتية الحيوية.',
     fields:'محطات الكهرباء، الصناعات النفطية والغازية، أنظمة التدفئة الصناعية، مشاريع الطاقة المتجددة، والاستشارات الهندسية.',
     skills:'التحليل الرياضي المتقدم، الفهم العميق للدورات الحرارية، النمذجة الحرارية، وإتقان برامج محاكاة الطاقة.',
-    future:'فرص متزايدة مع التوجه لإعادة تأهيل محطات الطاقة والتوسع في الطاقة الشمسية في سوريا.' },
+    future:'فرص متزايدة مع التوجه لإعادة تأهيل محطات الطاقة والتوسع في الطاقة الشمسية في سوريا.',
+    video: { id:'DaAxI7b_ki8', title:'داخل محطة طاقة هيدروليكية — التوربينات والمولدات الحقيقية' } },
   { id:'materials', name:'هندسة المواد الهندسية',
     def:'قسم يدرس خواص المواد المختلفة من معادن وبوليمرات وسيراميك ومواد مركّبة، وطرق تحسين أدائها للتطبيقات الهندسية.',
     study:'يدرس الطالب علم المعادن، خواص المواد الميكانيكية والحرارية، معالجة المواد، المواد المتقدمة والمركّبة، واختبارات التعب والكسر.',
     advantages:'تخصص أساسي يدعم جميع فروع الهندسة، يُعدّ الطالب لفهم حدود المواد وكيفية استغلال خواصها المُثلى في التصميم.',
     fields:'مختبرات الاختبار والجودة، شركات التصنيع، البحث والتطوير، الصناعات الفضائية والدفاعية، وإنتاج المواد المتقدمة.',
     skills:'التحليل المجهري للمواد، تفسير نتائج الاختبارات الميكانيكية، التفكير العلمي التجريبي، ومعرفة طرق المعالجة الحرارية.',
-    future:'طلب مستمر في مختبرات الجودة والبحث والتطوير، مع فرص في مشاريع إعادة الإعمار التي تحتاج لمعرفة دقيقة بالمواد.' },
+    future:'طلب مستمر في مختبرات الجودة والبحث والتطوير، مع فرص في مشاريع إعادة الإعمار التي تحتاج لمعرفة دقيقة بالمواد.',
+    video: { id:'lCjlPe5nh94', title:'أفران الصهر والفولاذ — داخل مصانع المواد الهندسية الحقيقية' } },
   { id:'industrial', name:'الهندسة الصناعية',
     def:'قسم يُعنى بتحسين العمليات والأنظمة الصناعية والإدارية، ويجمع بين الهندسة وإدارة الإنتاج لتحقيق أعلى كفاءة بأقل تكلفة.',
     study:'يدرس الطالب بحوث العمليات، إدارة سلسلة الإمداد، تخطيط المصانع، الإحصاء التطبيقي، إدارة المشاريع، ودراسة الحركة والوقت.',
     advantages:'تخصص يجمع الهندسة بالإدارة، ويُخرّج مهندسين قادرين على قيادة الفرق وتحسين الكفاءة في أي قطاع.',
     fields:'المصانع والشركات الكبرى، إدارة سلاسل الإمداد، الاستشارات الإدارية والهندسية، الجهات الحكومية، والمستشفيات.',
     skills:'التفكير المنهجي، تحليل البيانات، مهارات القيادة والتنظيم، إتقان برامج محاكاة العمليات، وإدارة المشاريع.',
-    future:'من أكثر التخصصات مرونة وطلباً، حيث يستطيع خريجه العمل في أي قطاع تقريباً وهو مطلوب بشدة في مرحلة إعادة الإعمار.' },
+    future:'من أكثر التخصصات مرونة وطلباً، حيث يستطيع خريجه العمل في أي قطاع تقريباً وهو مطلوب بشدة في مرحلة إعادة الإعمار.',
+    video: { id:'z66gH20uTZQ', title:'جولة في مصنع يطبق Lean Manufacturing بشكل كامل' } },
   { id:'agricultural', name:'هندسة الآلات الزراعية',
     def:'قسم يدرس تصميم وتصنيع وصيانة الآلات والمعدات الزراعية، ويجمع بين الهندسة الميكانيكية ومتطلبات القطاع الزراعي.',
     study:'يدرس الطالب آلات الحرث والحصاد، أنظمة الري الميكانيكية، محركات الجرارات، ميكنة العمليات الزراعية، وصيانة المعدات الحقلية.',
     advantages:'تخصص يربط الهندسة بأكثر القطاعات حيوية في سوريا، ويساهم مباشرة في تحقيق الأمن الغذائي وتطوير القطاع الريفي.',
     fields:'وزارة الزراعة، شركات الآلات الزراعية، المشاريع الزراعية الكبرى، الاستشارات الهندسية الريفية، وصيانة الأسطول الزراعي.',
     skills:'الفهم التطبيقي للميكانيك، التعامل مع بيئات العمل الحقلي، صيانة المحركات والهيدروليك، وحل مشكلات الأعطال الميدانية.',
-    future:'فرص واعدة في ظل التوجه لإعادة إحياء القطاع الزراعي السوري وتحقيق الاكتفاء الذاتي الغذائي بعد سنوات الأزمة.' }
+    future:'فرص واعدة في ظل التوجه لإعادة إحياء القطاع الزراعي السوري وتحقيق الاكتفاء الذاتي الغذائي بعد سنوات الأزمة.',
+    video: { id:'Y42b5OI8cS8', title:'مصنع جرارات DEUTZ-FAHR الألماني — التجميع والاختبار الميداني' } }
 ];
+
+const YT_BADGE = `<span class="video-yt-badge"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 002.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>YouTube</span>`;
+
+function videoBanner(v) {
+  const thumb = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
+  const url   = `https://www.youtube.com/watch?v=${v.id}`;
+  return `
+    <a class="video-banner detail full" href="${url}" target="_blank" rel="noopener" aria-label="شاهد الفيديو على يوتيوب: ${v.title}">
+      <img src="${thumb}" alt="${v.title}" loading="lazy" />
+      <div class="video-play">
+        <div class="play-circle">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <span class="video-label">🎬 ${v.title}</span>
+      </div>
+      ${YT_BADGE}
+    </a>`;
+}
 
 const grid = document.getElementById('grid');
 const overlay = document.getElementById('overlay');
@@ -658,7 +707,7 @@ function buildCards() {
       <div class="icon-box">${ICONS[item.id]}</div>
       <h3>${item.name}</h3>
       <p>${item.def}</p>
-      <div class="meta"><span>عرض التفاصيل</span><span>←</span></div>
+      <div class="meta"><span>عرض التفاصيل والفيديو</span><span>←</span></div>
     `;
     card.addEventListener('click', () => openModal(index));
     card.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(index);} });
@@ -679,6 +728,7 @@ function renderModal(index) {
     <div class="detail"><span class="label">🏭 مجالات العمل</span><p>${item.fields}</p></div>
     <div class="detail"><span class="label">🛠️ المهارات المناسبة</span><p>${item.skills}</p></div>
     <div class="detail full"><span class="label">🚀 المستقبل وفرص العمل في سوريا</span><p>${item.future}</p></div>
+    ${videoBanner(item.video)}
   `;
   prevBtn.onclick = () => openModal((index-1+departments.length)%departments.length);
   nextBtn.onclick = () => openModal((index+1)%departments.length);
