@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#1c2410"/>
+  <!-- Gear -->
+  <g transform="translate(256,272)">
+    <circle r="72" fill="#8fd694" opacity="0.18"/>
+    <circle r="52" fill="none" stroke="#8fd694" stroke-width="14"/>
+    <circle r="22" fill="#1c2410" stroke="#8fd694" stroke-width="10"/>
+    <!-- Gear teeth -->
+    <rect x="-10" y="-90" width="20" height="30" rx="4" fill="#8fd694"/>
+    <rect x="-10" y="60" width="20" height="30" rx="4" fill="#8fd694"/>
+    <rect x="60" y="-10" width="30" height="20" rx="4" fill="#8fd694"/>
+    <rect x="-90" y="-10" width="30" height="20" rx="4" fill="#8fd694"/>
+    <rect x="42" y="-68" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(45,52,-58)"/>
+    <rect x="-62" y="-68" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(-45,-52,-58)"/>
+    <rect x="42" y="38" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(-45,52,58)"/>
+    <rect x="-62" y="38" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(45,-52,58)"/>
+  </g>
+  <!-- Hard Hat -->
+  <!-- Brim -->
+  <rect x="148" y="248" width="216" height="22" rx="11" fill="#ffffff"/>
+  <!-- Dome -->
+  <path d="M174 250 C174 170 338 170 338 250 Z" fill="#ffffff"/>
+  <!-- Stripe on hat -->
+  <path d="M192 224 C210 190 302 190 320 224" stroke="#8fd694" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <!-- Bottom inner shadow of hat -->
+  <rect x="175" y="248" width="162" height="12" rx="6" fill="#e8e8e8"/>
+</svg>
