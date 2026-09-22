@@ -6,10 +6,21 @@
   <title>دليل أقسام الهندسة الميكانيكية</title>
   <meta name="description" content="دليل عربي تفاعلي يعرّف بأقسام كلية الهندسة الميكانيكية، ويساعد الطالب على مقارنة التخصصات وفهم الدراسة والمهارات وفرص العمل في سوريا." />
   <meta name="theme-color" content="#1c2410" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="الهندسة الميكانيكية" />
   <meta property="og:title" content="دليل أقسام الهندسة الميكانيكية" />
   <meta property="og:description" content="اكتشف الأقسام الثمانية للهندسة الميكانيكية، الدراسة، المهارات، وفرص العمل في سوريا ضمن تجربة عربية تفاعلية." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ar_AR" />
+  <meta property="og:image" content="icon.svg" />
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
@@ -94,11 +105,11 @@
       border:1px solid rgba(255,255,255,.08); border-radius:999px;
       background:rgba(255,255,255,.04); backdrop-filter:blur(10px);
     }
-    .brand-dot {
-      width:10px; height:10px; border-radius:50%;
-      background:var(--glow); box-shadow:0 0 18px rgba(143,214,148,.7);
-      animation: pulseDot 2.4s ease-in-out infinite;
+    .brand-icon {
+      width:28px; height:28px; border-radius:8px; overflow:hidden; flex-shrink:0;
+      box-shadow:0 0 10px rgba(143,214,148,.3);
     }
+    .brand-icon img { width:100%; height:100%; object-fit:cover; display:block; }
 
     .hero {
       min-height:calc(100vh - 72px); display:grid; place-items:center;
@@ -224,7 +235,6 @@
     .card .meta { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:.9rem; color:var(--olive-600); font-weight:800; }
     .meta span:last-child { display:inline-block; animation:arrowShift 1.6s ease-in-out infinite; }
 
-    /* ===== بانر الفيديو ===== */
     .video-banner {
       grid-column: 1 / -1;
       display: block;
@@ -402,7 +412,9 @@
 <div class="shell">
   <header class="topbar">
     <div class="brand">
-      <span class="brand-dot"></span>
+      <span class="brand-icon">
+        <img src="icon.svg" alt="شعار الموقع" />
+      </span>
       دليل أقسام الهندسة الميكانيكية
     </div>
   </header>
