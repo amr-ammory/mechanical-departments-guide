@@ -1,27 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#1c2410"/>
-  <!-- Gear -->
-  <g transform="translate(256,272)">
-    <circle r="72" fill="#8fd694" opacity="0.18"/>
-    <circle r="52" fill="none" stroke="#8fd694" stroke-width="14"/>
-    <circle r="22" fill="#1c2410" stroke="#8fd694" stroke-width="10"/>
-    <!-- Gear teeth -->
-    <rect x="-10" y="-90" width="20" height="30" rx="4" fill="#8fd694"/>
-    <rect x="-10" y="60" width="20" height="30" rx="4" fill="#8fd694"/>
-    <rect x="60" y="-10" width="30" height="20" rx="4" fill="#8fd694"/>
-    <rect x="-90" y="-10" width="30" height="20" rx="4" fill="#8fd694"/>
-    <rect x="42" y="-68" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(45,52,-58)"/>
-    <rect x="-62" y="-68" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(-45,-52,-58)"/>
-    <rect x="42" y="38" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(-45,52,58)"/>
-    <rect x="-62" y="38" width="20" height="30" rx="4" fill="#8fd694" transform="rotate(45,-52,58)"/>
+  <!-- خلفية زيتونية دائرية -->
+  <circle cx="256" cy="256" r="256" fill="#1c2410"/>
+
+  <!-- ترس خارجي كبير -->
+  <g fill="none" stroke="#8fd694" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <!-- أسنان الترس الكبير (12 سن) -->
+    <path d="
+      M256 82 L270 110 L300 108 L292 138
+      M330 96 L330 128 L356 142 L344 168
+      M390 148 L370 168 L378 198 L350 202
+      M416 210 L392 220 L390 250 L416 260
+      M406 296 L382 294 L370 322 L394 336
+      M370 370 L348 356 L322 372 L328 398
+      M308 416 L294 394 L264 396 L258 424
+      M222 416 L228 388 L200 374 L188 398
+      M152 378 L166 356 L148 332 L122 342
+      M106 316 L128 308 L128 278 L102 268
+      M110 226 L134 230 L146 202 L124 188
+      M148 150 L164 172 L192 164 L190 136
+    " stroke="none" fill="none"/>
+
+    <!-- دائرة الترس الخارجية -->
+    <circle cx="256" cy="256" r="140" stroke="#8fd694" stroke-width="0" fill="none"/>
+
+    <!-- الترس الكامل بمسار واحد -->
+    <path d="
+      M256,116 L268,144 C284,140 300,140 316,144 L332,118 L362,134 L354,162
+      C366,172 376,184 384,198 L412,196 L418,230 L390,240
+      C392,256 390,272 386,288 L412,300 L402,332 L372,326
+      C362,338 350,348 336,356 L340,386 L308,396 L298,366
+      C282,370 266,370 250,366 L240,396 L208,386 L212,356
+      C198,348 186,338 176,326 L146,332 L136,300 L162,288
+      C158,272 156,256 158,240 L130,230 L136,196 L164,198
+      C172,184 182,172 194,162 L186,134 L216,118 Z
+    " fill="#2a3a1a" stroke="#8fd694" stroke-width="10"/>
+
+    <!-- دائرة وسط الترس -->
+    <circle cx="256" cy="256" r="72" fill="#1c2410" stroke="#8fd694" stroke-width="10"/>
+    <circle cx="256" cy="256" r="22" fill="#8fd694" stroke="none"/>
   </g>
-  <!-- Hard Hat -->
-  <!-- Brim -->
-  <rect x="148" y="248" width="216" height="22" rx="11" fill="#ffffff"/>
-  <!-- Dome -->
-  <path d="M174 250 C174 170 338 170 338 250 Z" fill="#ffffff"/>
-  <!-- Stripe on hat -->
-  <path d="M192 224 C210 190 302 190 320 224" stroke="#8fd694" stroke-width="10" fill="none" stroke-linecap="round"/>
-  <!-- Bottom inner shadow of hat -->
-  <rect x="175" y="248" width="162" height="12" rx="6" fill="#e8e8e8"/>
+
+  <!-- خوذة المهندس فوق الترس -->
+  <g fill="none">
+    <!-- قبة الخوذة -->
+    <path d="M194 256 Q200 200 256 190 Q312 200 318 256 Z" fill="#8fd694"/>
+    <!-- حافة الخوذة -->
+    <rect x="185" y="254" width="142" height="18" rx="9" fill="#8fd694"/>
+    <!-- شريط الخوذة الأصفر -->
+    <path d="M200 254 Q220 232 256 228 Q292 232 312 254" stroke="#d4a017" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <!-- حافة سفلية صغيرة -->
+    <rect x="220" y="272" width="72" height="10" rx="5" fill="#6d8248"/>
+  </g>
+
+  <!-- نقطة توهج -->
+  <circle cx="256" cy="256" r="8" fill="#ffffff" opacity="0.25"/>
 </svg>

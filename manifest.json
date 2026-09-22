@@ -1,7 +1,7 @@
 {
   "name": "دليل أقسام الهندسة الميكانيكية",
-  "short_name": "الهندسة الميكانيكية",
-  "description": "دليل عربي تفاعلي لأقسام كلية الهندسة الميكانيكية",
+  "short_name": "هندسة ميكانيكية",
+  "description": "دليل عربي تفاعلي لأقسام كلية الهندسة الميكانيكية في سوريا",
   "start_url": "/mechanical-departments-guide/",
   "display": "standalone",
   "background_color": "#1c2410",
@@ -10,11 +10,6 @@
   "lang": "ar",
   "dir": "rtl",
   "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
 }
